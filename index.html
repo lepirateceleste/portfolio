@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christ Yao — Product Design & Front-End</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Plus Jakarta Sans', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  .num-mono { font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+  ::selection { background: rgba(245, 158, 11, 0.25); color: #fff; }
+
+  .avatar-ring {
+    box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.25);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .blob {
+      animation: floaty 14s ease-in-out infinite;
+    }
+    .blob-b { animation-duration: 18s; animation-delay: -4s; }
+    .blob-c { animation-duration: 22s; animation-delay: -9s; }
+    @keyframes floaty {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(20px, -24px) scale(1.06); }
+      66% { transform: translate(-16px, 18px) scale(0.96); }
+    }
+  }
+
+  .project-row .arrow {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  }
+  .project-row:hover .arrow {
+    transform: translateX(4px);
+  }
+  .project-row:hover .proj-title {
+    color: #f59e0b;
+  }
+  .project-row:hover .proj-num {
+    color: #f59e0b;
+  }
+
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+</style>
+</head>
+<body class="bg-black text-white antialiased grain">
+
+  <!-- ================= HEADER / HERO ================= -->
+  <header class="relative border-b border-stone-800 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="blob absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full bg-amber-500/5 blur-3xl"></div>
+      <div class="blob blob-b absolute top-1/2 -left-32 w-[320px] h-[320px] rounded-full bg-amber-600/5 blur-3xl"></div>
+      <div class="blob blob-c absolute bottom-0 right-1/4 w-[260px] h-[260px] rounded-full bg-amber-500/5 blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-6 sm:px-10 pt-10 pb-24 sm:pt-14 sm:pb-32">
+      <!-- Top bar -->
+      <div class="flex items-center justify-between" data-aos="fade-down" data-aos-duration="600">
+        <div class="flex items-center gap-2.5">
+          <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+          <span class="text-xs sm:text-sm tracking-[0.2em] text-stone-400 uppercase">Christ Yao</span>
+        </div>
+        <div class="hidden sm:flex items-center gap-2 text-xs tracking-[0.15em] text-stone-500 uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+          Disponible pour projets — Abidjan, CI
+        </div>
+      </div>
+
+      <!-- Titre marquant + avatar -->
+      <div class="mt-16 sm:mt-24 flex flex-col-reverse sm:flex-row items-center sm:items-end gap-8 sm:gap-10" data-aos="fade-up" data-aos-duration="700">
+        <div class="flex-1 w-full text-center sm:text-left">
+          <p class="text-xs sm:text-sm tracking-[0.3em] text-amber-500 uppercase mb-5">Portfolio / Product Design</p>
+          <h1 class="font-extrabold leading-[0.95] tracking-tight text-[13vw] sm:text-[7.5vw] lg:text-[6.4rem]">
+            Christ<br>
+            <span class="text-stone-500">Yao.</span>
+          </h1>
+        </div>
+        <div class="shrink-0">
+          <img
+            src="avatar.png"
+            alt="Christ Yao"
+            class="avatar-ring w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-2xl object-cover bg-stone-900"
+          >
+        </div>
+      </div>
+
+      <div class="mt-10 sm:mt-14 grid grid-cols-1 sm:grid-cols-12 gap-8" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
+        <p class="sm:col-span-7 lg:col-span-6 text-stone-400 text-base sm:text-lg leading-relaxed">
+          Product Designer &amp; Développeur Front-End basé à Abidjan. Je conçois des identités,
+          des interfaces et des expériences numériques — du wireframe au code — pour des marques
+          qui veulent une exécution précise et sans compromis.
+        </p>
+        <div class="sm:col-span-5 lg:col-span-6 flex sm:justify-end items-start">
+          <a href="#contact" class="group inline-flex items-center gap-3 border border-stone-800 hover:border-amber-500/50 rounded-2xl px-6 py-3.5 transition-colors duration-300">
+            <span class="text-sm tracking-wide text-white group-hover:text-amber-400 transition-colors duration-300">Démarrer un projet</span>
+            <span class="text-amber-500 group-hover:translate-x-1 transition-transform duration-300">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 sm:px-10">
+
+    <!-- ================= EXPÉRIENCE ================= -->
+    <section id="experience" class="py-20 sm:py-28 border-b border-stone-800">
+      <div class="flex items-baseline justify-between mb-12 sm:mb-16" data-aos="fade-up">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Expérience</h2>
+        <span class="text-xs tracking-[0.2em] text-stone-600 uppercase hidden sm:block">2023 — 2026</span>
+      </div>
+
+      <div class="border border-stone-800 rounded-2xl divide-y divide-stone-800 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="group grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 px-6 sm:px-8 py-6 sm:py-7 hover:bg-stone-900/40 transition-colors duration-300">
+          <span class="sm:col-span-3 text-sm text-stone-500 num-mono">2024 — 2026</span>
+          <span class="sm:col-span-6 text-lg sm:text-xl font-semibold text-white group-hover:text-amber-400 transition-colors duration-300">Product Designer</span>
+          <span class="sm:col-span-3 sm:text-right text-stone-400 text-sm sm:text-base self-center">Lambano Groupe</span>
+        </div>
+
+        <div class="group grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 px-6 sm:px-8 py-6 sm:py-7 hover:bg-stone-900/40 transition-colors duration-300">
+          <span class="sm:col-span-3 text-sm text-stone-500 num-mono">2025 — Présent</span>
+          <span class="sm:col-span-6 text-lg sm:text-xl font-semibold text-white group-hover:text-amber-400 transition-colors duration-300">Fondateur &amp; Directeur Créatif</span>
+          <span class="sm:col-span-3 sm:text-right text-stone-400 text-sm sm:text-base self-center">Marvin Studio</span>
+        </div>
+
+        <div class="group grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 px-6 sm:px-8 py-6 sm:py-7 hover:bg-stone-900/40 transition-colors duration-300">
+          <span class="sm:col-span-3 text-sm text-stone-500 num-mono">2025 — 2026</span>
+          <span class="sm:col-span-6 text-lg sm:text-xl font-semibold text-white group-hover:text-amber-400 transition-colors duration-300">Lead UX/UI Designer</span>
+          <span class="sm:col-span-3 sm:text-right text-stone-400 text-sm sm:text-base self-center">Mamyz <span class="text-stone-600">(FinTech App)</span></span>
+        </div>
+
+        <div class="group grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 px-6 sm:px-8 py-6 sm:py-7 hover:bg-stone-900/40 transition-colors duration-300">
+          <span class="sm:col-span-3 text-sm text-stone-500 num-mono">2023 — 2026</span>
+          <span class="sm:col-span-6 text-lg sm:text-xl font-semibold text-white group-hover:text-amber-400 transition-colors duration-300">Digital &amp; Visual Branding Designer</span>
+          <span class="sm:col-span-3 sm:text-right text-stone-400 text-sm sm:text-base self-center">Oracle Immobilier</span>
+        </div>
+
+        <div class="group grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 px-6 sm:px-8 py-6 sm:py-7 hover:bg-stone-900/40 transition-colors duration-300">
+          <span class="sm:col-span-3 text-sm text-stone-500 num-mono">2023 — 2026</span>
+          <span class="sm:col-span-6 text-lg sm:text-xl font-semibold text-white group-hover:text-amber-400 transition-colors duration-300">UI/UX &amp; Frontend Developer</span>
+          <span class="sm:col-span-3 sm:text-right text-stone-400 text-sm sm:text-base self-center">Freelance</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= COMPÉTENCES ================= -->
+    <section id="competences" class="py-20 sm:py-28 border-b border-stone-800">
+      <div class="flex items-baseline justify-between mb-12 sm:mb-16" data-aos="fade-up">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Compétences</h2>
+        <span class="text-xs tracking-[0.2em] text-stone-600 uppercase hidden sm:block">Design × Outils</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+        <!-- Colonne Design -->
+        <div class="border border-stone-800 rounded-2xl p-8 sm:p-10" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center gap-2.5 mb-8">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+            <h3 class="text-xs tracking-[0.2em] text-stone-500 uppercase">Design</h3>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-center justify-between border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">Design de produit</li>
+            <li class="flex items-center justify-between border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">Conception UX/UI</li>
+            <li class="flex items-center justify-between border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">Identité visuelle</li>
+            <li class="flex items-center justify-between border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">Systèmes de design</li>
+            <li class="flex items-center justify-between border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">Architecture de l'information</li>
+            <li class="flex items-center justify-between border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">Apps mobiles &amp; Web</li>
+            <li class="flex items-center justify-between border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">Prototypage interactif</li>
+            <li class="flex items-center justify-between text-stone-300 hover:text-amber-400 transition-colors duration-300">Stratégie de marque</li>
+          </ul>
+        </div>
+
+        <!-- Colonne Outils -->
+<div class="border border-stone-800 rounded-2xl p-8 sm:p-10" data-aos="fade-up" data-aos-delay="200">
+    <div class="flex items-center gap-2.5 mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+        <h3 class="text-xs tracking-[0.2em] text-stone-500 uppercase">Outils & Logiciels</h3>
+    </div>
+    
+    <ul class="space-y-4">
+        <!-- DESIGN & UI/UX -->
+        <li class="text-[10px] tracking-widest text-stone-600 font-bold uppercase pt-2">— UI/UX & Design</li>
+        <li class="flex items-center gap-3 border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">
+            <i class="fa-brands fa-figma text-amber-500 w-5 text-center text-base"></i>
+            <span>Figma</span>
+        </li>
+        <li class="flex items-center gap-3 border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">
+            <i class="fa-brands fa-adobe text-amber-500 w-5 text-center text-base"></i>
+            <span>Adobe XD</span>
+        </li>
+        <li class="flex items-center gap-3 border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">
+            <i class="fa-solid fa-palette text-amber-500 w-5 text-center text-sm"></i>
+            <span>Suite Adobe (Illustrator / Photoshop)</span>
+        </li>
+
+        <!-- DEV & NO-CODE -->
+        <li class="text-[10px] tracking-widest text-stone-600 font-bold uppercase pt-4">— Dev & No-Code</li>
+        <li class="flex items-center gap-3 border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">
+            <i class="fa-brands fa-html5 text-amber-500 w-5 text-center text-base"></i>
+            <span>HTML / CSS</span>
+        </li>
+        <li class="flex items-center gap-3 border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">
+            <i class="fa-solid fa-wind text-amber-500 w-5 text-center text-sm"></i>
+            <span>Tailwind CSS</span>
+        </li>
+        <li class="flex items-center gap-3 border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">
+            <i class="fa-solid fa-cubes text-amber-500 w-5 text-center text-sm"></i>
+            <span>Framer</span>
+        </li>
+        <li class="flex items-center gap-3 border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">
+            <i class="fa-brands fa-wordpress text-amber-500 w-5 text-center text-base"></i>
+            <span>WordPress</span>
+        </li>
+        <li class="flex items-center gap-3 border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">
+            <i class="fa-solid fa-pager text-amber-500 w-5 text-center text-sm"></i>
+            <span>Carrd</span>
+        </li>
+
+        <!-- AUDIOVISUEL & STRATÉGIE -->
+        <li class="text-[10px] tracking-widest text-stone-600 font-bold uppercase pt-4">— Audiovisuel & Stratégie</li>
+        <li class="flex items-center gap-3 border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">
+            <i class="fa-solid fa-music text-amber-500 w-5 text-center text-sm"></i>
+            <span>Logic Pro</span>
+        </li>
+        <li class="flex items-center gap-3 border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">
+            <i class="fa-solid fa-video text-amber-500 w-5 text-center text-sm"></i>
+            <span>Premiere Pro / CapCut</span>
+        </li>
+        <li class="flex items-center gap-3 border-b border-stone-900 pb-4 text-stone-300 hover:text-amber-400 transition-colors duration-300">
+            <i class="fa-brands fa-meta text-amber-500 w-5 text-center text-sm"></i>
+            <span>Meta Business Suite</span>
+        </li>
+    </ul>
+</div>
+<!-- / Colonne Outils -->
+    </section>
+
+    <!-- ================= INDEX DES PROJETS ================= -->
+    <section id="projets" class="py-20 sm:py-28 border-b border-stone-800">
+      <div class="flex items-baseline justify-between mb-12 sm:mb-16" data-aos="fade-up">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Index des projets</h2>
+        <span class="text-xs tracking-[0.2em] text-stone-600 uppercase hidden sm:block">10 sélections</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-0 border-t border-l border-stone-800 rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+
+        <a href="#" class="project-row flex items-center justify-between gap-4 px-6 sm:px-8 py-6 border-r border-b border-stone-800 hover:bg-stone-900/40 transition-colors duration-300">
+          <div class="flex items-baseline gap-4">
+            <span class="proj-num text-sm text-stone-600 num-mono transition-colors duration-300">01/10</span>
+            <span class="proj-title text-white font-medium transition-colors duration-300">Mamyz App</span>
+          </div>
+          <span class="arrow text-stone-600">↗</span>
+        </a>
+
+        <a href="#" class="project-row flex items-center justify-between gap-4 px-6 sm:px-8 py-6 border-r border-b border-stone-800 hover:bg-stone-900/40 transition-colors duration-300">
+          <div class="flex items-baseline gap-4">
+            <span class="proj-num text-sm text-stone-600 num-mono transition-colors duration-300">02/10</span>
+            <span class="proj-title text-white font-medium transition-colors duration-300">Famien Family Office</span>
+          </div>
+          <span class="arrow text-stone-600">↗</span>
+        </a>
+
+        <a href="#" class="project-row flex items-center justify-between gap-4 px-6 sm:px-8 py-6 border-r border-b border-stone-800 hover:bg-stone-900/40 transition-colors duration-300">
+          <div class="flex items-baseline gap-4">
+            <span class="proj-num text-sm text-stone-600 num-mono transition-colors duration-300">03/10</span>
+            <span class="proj-title text-white font-medium transition-colors duration-300">Le site Aliwax</span>
+          </div>
+          <span class="arrow text-stone-600">↗</span>
+        </a>
+
+        <a href="#" class="project-row flex items-center justify-between gap-4 px-6 sm:px-8 py-6 border-r border-b border-stone-800 hover:bg-stone-900/40 transition-colors duration-300">
+          <div class="flex items-baseline gap-4">
+            <span class="proj-num text-sm text-stone-600 num-mono transition-colors duration-300">04/10</span>
+            <span class="proj-title text-white font-medium transition-colors duration-300">Lambano Groupe</span>
+          </div>
+          <span class="arrow text-stone-600">↗</span>
+        </a>
+
+        <a href="#" class="project-row flex items-center justify-between gap-4 px-6 sm:px-8 py-6 border-r border-b border-stone-800 hover:bg-stone-900/40 transition-colors duration-300">
+          <div class="flex items-baseline gap-4">
+            <span class="proj-num text-sm text-stone-600 num-mono transition-colors duration-300">05/10</span>
+            <span class="proj-title text-white font-medium transition-colors duration-300">Oracle Immobilier</span>
+          </div>
+          <span class="arrow text-stone-600">↗</span>
+        </a>
+
+        <a href="#" class="project-row flex items-center justify-between gap-4 px-6 sm:px-8 py-6 border-r border-b border-stone-800 hover:bg-stone-900/40 transition-colors duration-300">
+          <div class="flex items-baseline gap-4">
+            <span class="proj-num text-sm text-stone-600 num-mono transition-colors duration-300">06/10</span>
+            <span class="proj-title text-white font-medium transition-colors duration-300">Direction Artistique — Journée Carrière</span>
+          </div>
+          <span class="arrow text-stone-600">↗</span>
+        </a>
+
+        <a href="#" class="project-row flex items-center justify-between gap-4 px-6 sm:px-8 py-6 border-r border-b border-stone-800 hover:bg-stone-900/40 transition-colors duration-300">
+          <div class="flex items-baseline gap-4">
+            <span class="proj-num text-sm text-stone-600 num-mono transition-colors duration-300">07/10</span>
+            <span class="proj-title text-white font-medium transition-colors duration-300">Areel Événements</span>
+          </div>
+          <span class="arrow text-stone-600">↗</span>
+        </a>
+
+        <a href="#" class="project-row flex items-center justify-between gap-4 px-6 sm:px-8 py-6 border-r border-b border-stone-800 hover:bg-stone-900/40 transition-colors duration-300">
+          <div class="flex items-baseline gap-4">
+            <span class="proj-num text-sm text-stone-600 num-mono transition-colors duration-300">08/10</span>
+            <span class="proj-title text-white font-medium transition-colors duration-300">Effuzion Web</span>
+          </div>
+          <span class="arrow text-stone-600">↗</span>
+        </a>
+
+        <a href="#" class="project-row flex items-center justify-between gap-4 px-6 sm:px-8 py-6 border-r border-b border-stone-800 hover:bg-stone-900/40 transition-colors duration-300">
+          <div class="flex items-baseline gap-4">
+            <span class="proj-num text-sm text-stone-600 num-mono transition-colors duration-300">09/10</span>
+            <span class="proj-title text-white font-medium transition-colors duration-300">Prod. Audiovisuelle &amp; Réalisation</span>
+          </div>
+          <span class="arrow text-stone-600">↗</span>
+        </a>
+
+        <a href="#" class="project-row flex items-center justify-between gap-4 px-6 sm:px-8 py-6 border-r border-b border-stone-800 hover:bg-stone-900/40 transition-colors duration-300">
+          <div class="flex items-baseline gap-4">
+            <span class="proj-num text-sm text-stone-600 num-mono transition-colors duration-300">10/10</span>
+            <span class="proj-title text-white font-medium transition-colors duration-300">Identité Visuelle &amp; Branding</span>
+          </div>
+          <span class="arrow text-stone-600">↗</span>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER / CONTACT ================= -->
+  <footer id="contact" class="border-t border-stone-800">
+    <div class="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
+
+      <div class="mb-14 sm:mb-20" data-aos="fade-up">
+        <p class="text-xs sm:text-sm tracking-[0.3em] text-amber-500 uppercase mb-5">Contact</p>
+        <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight max-w-2xl">
+          Un projet en tête ?
+          <span class="text-stone-500">Parlons-en.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-aos="fade-up" data-aos-delay="100">
+
+        <a href="mailto:christmarvin2003@gmail.com" class="group border border-stone-800 hover:border-amber-500/50 rounded-2xl p-6 flex flex-col justify-between gap-8 transition-colors duration-300">
+          <span class="text-xs tracking-[0.2em] text-stone-600 uppercase">Email</span>
+          <span class="flex items-center justify-between">
+            <span class="text-white group-hover:text-amber-400 font-medium transition-colors duration-300 break-all">christmarvin2003@gmail.com</span>
+            <span class="text-amber-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 shrink-0 ml-2">↗</span>
+          </span>
+        </a>
+
+        <a href="https://www.behance.net/christyaoux" target="_blank" rel="noopener noreferrer" class="group border border-stone-800 hover:border-amber-500/50 rounded-2xl p-6 flex flex-col justify-between gap-8 transition-colors duration-300">
+          <span class="text-xs tracking-[0.2em] text-stone-600 uppercase">Behance</span>
+          <span class="flex items-center justify-between">
+            <span class="text-white group-hover:text-amber-400 font-medium transition-colors duration-300">christyaoux</span>
+            <span class="text-amber-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 shrink-0 ml-2">↗</span>
+          </span>
+        </a>
+
+        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="group border border-stone-800 hover:border-amber-500/50 rounded-2xl p-6 flex flex-col justify-between gap-8 transition-colors duration-300">
+          <span class="text-xs tracking-[0.2em] text-stone-600 uppercase">YouTube</span>
+          <span class="flex items-center justify-between">
+            <span class="text-white group-hover:text-amber-400 font-medium transition-colors duration-300">Marvin Studio</span>
+            <span class="text-amber-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 shrink-0 ml-2">↗</span>
+          </span>
+        </a>
+
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="group border border-stone-800 hover:border-amber-500/50 rounded-2xl p-6 flex flex-col justify-between gap-8 transition-colors duration-300">
+          <span class="text-xs tracking-[0.2em] text-stone-600 uppercase">LinkedIn</span>
+          <span class="flex items-center justify-between">
+            <span class="text-white group-hover:text-amber-400 font-medium transition-colors duration-300">Christ Yao</span>
+            <span class="text-amber-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 shrink-0 ml-2">↗</span>
+          </span>
+        </a>
+
+      </div>
+
+      <div class="mt-16 sm:mt-20 pt-8 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-stone-600 tracking-wide">© 2026 Christ Yao — Marvin Studio. Tous droits réservés.</p>
+        <p class="text-xs text-stone-600 tracking-wide">Abidjan, Côte d'Ivoire</p>
+      </div>
+
+    </div>
+  </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 700,
+    easing: 'ease-out-cubic',
+    once: true,
+    offset: 60,
+  });
+</script>
+</body>
+</html>
