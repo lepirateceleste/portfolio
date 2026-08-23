@@ -52,7 +52,7 @@
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1; /* ← Remplace 0 par -1 ici */
   overflow: hidden;
 }
 
@@ -60,7 +60,7 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: 0.22; /* Intensité bien visible mais agréable */
+  opacity: 0.5; /* ← Remplace 0.22 par 0.5 ici */
   animation: floatGlow 18s ease-in-out infinite alternate;
 }
 
