@@ -66,11 +66,11 @@
       will-change: transform;
     }
 
-    .glow-1 {
+   .glow-1 {
       top: -10%;
       left: 5%;
-      width: 600px;
-      height: 600px;
+      width: 420px;
+      height: 420px;
       background: radial-gradient(circle, rgba(245, 158, 11, 0.9) 0%, transparent 70%);
       animation: floatGlow1 16s ease-in-out infinite alternate;
     }
@@ -78,8 +78,8 @@
     .glow-2 {
       bottom: -10%;
       right: -5%;
-      width: 700px;
-      height: 700px;
+      width: 480px;
+      height: 480px;
       background: radial-gradient(circle, rgba(59, 130, 246, 0.7) 0%, transparent 70%);
       animation: floatGlow2 20s ease-in-out infinite alternate;
     }
@@ -87,8 +87,8 @@
     .glow-3 {
       top: 40%;
       left: 35%;
-      width: 500px;
-      height: 500px;
+      width: 360px;
+      height: 360px;
       background: radial-gradient(circle, rgba(217, 119, 6, 0.6) 0%, transparent 70%);
       animation: floatGlow1 18s ease-in-out infinite alternate-reverse;
     }
@@ -500,7 +500,30 @@
       offset: 60,
     });
   </script>
+<!-- Bouton Retour en Haut (Bas à gauche - Apparition au scroll) -->
+  <a 
+    id="backToTop"
+    href="#" 
+    class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-stone-900/80 backdrop-blur-md text-stone-300 hover:text-amber-400 border border-stone-800 rounded-full flex items-center justify-center shadow-xl hover:scale-110 opacity-0 pointer-events-none transition-all duration-300" 
+    aria-label="Retour en haut de page"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </a>
 
+  <script>
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+        backToTopBtn.classList.add('opacity-100');
+      } else {
+        backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+        backToTopBtn.classList.remove('opacity-100');
+      }
+    });
+  </script>
   <!-- Bouton WhatsApp Flottant Fixe -->
   <a 
     href="https://wa.me/2250584051218?text=Bonjour%20Christ,%20j'ai%20vu%20ton%20portfolio%20et%20je%20souhaite%20discuter%20d'un%20projet." 
