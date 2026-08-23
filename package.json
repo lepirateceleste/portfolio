@@ -1,0 +1,21 @@
+{
+  "name": "christyaoportfolio",
+  "version": "1.0.0",
+  "description": "Christ Yao Portfolio - Product Design & Front-End",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static HTML project - no build needed'",
+    "lint": "echo 'No linter configured'"
+  },
+  "keywords": [
+    "portfolio",
+    "design",
+    "frontend"
+  ],
+  "author": "Christ Yao",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
