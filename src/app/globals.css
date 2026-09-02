@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   CHRIST YAO — Design System Tokens
+   Charte graphique héritée de la V1, formalisée en design tokens Tailwind v4.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --color-bg: #08080a;
+  --color-surface: #121216;
+  --color-surface-alt: #1c1917; /* stone-900 */
+  --color-border: #292524; /* stone-800 */
+  --color-border-strong: #44403c; /* stone-700 */
+
+  /* Texte */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a8a29e; /* stone-400 */
+  --color-text-tertiary: #78716c; /* stone-500 */
+  --color-text-muted: #57534e; /* stone-600 */
+
+  /* Accent ambre — signature de marque */
+  --color-accent: #f59e0b; /* amber-500 */
+  --color-accent-light: #fbbf24; /* amber-400 */
+  --color-accent-deep: #d97706; /* amber-600 */
+
+  /* Canal WhatsApp (couleur de marque isolée, usage unique) */
+  --color-whatsapp: #25d366;
+
+  /* Rayon de bordure */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* Rythme vertical des sections */
+  --space-section-y: 6rem; /* py-24 desktop */
+  --space-section-y-lg: 8rem; /* py-32 desktop, sections majeures */
+  --space-section-y-mobile: 4rem; /* py-16 mobile */
+
+  /* Largeur de conteneur */
+  --container-max: 1280px;
+
+  /* Durées de motion (voir MOTION.md pour le détail du motion system) */
+  --duration-fast: 200ms;
+  --duration-base: 300ms;
+  --duration-medium: 400ms;
+  --duration-slow: 600ms;
+  --duration-hero: 800ms;
+
+  /* Easing signature — ease-out expo, cohérent avec la direction artistique */
+  --ease-signature: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@theme inline {
+  /* Couleurs exposées comme utilitaires Tailwind : bg-bg, text-accent, border-border, etc. */
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-alt: var(--color-surface-alt);
+  --color-border: var(--color-border);
+  --color-border-strong: var(--color-border-strong);
+
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
+  --color-text-muted: var(--color-text-muted);
+
+  --color-accent: var(--color-accent);
+  --color-accent-light: var(--color-accent-light);
+  --color-accent-deep: var(--color-accent-deep);
+
+  --color-whatsapp: var(--color-whatsapp);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --font-sans: var(--font-plus-jakarta-sans);
+
+  /* Échelle typographique display (hero) — clamp fluide */
+  --font-size-display: clamp(3.5rem, 9vw, 8rem);
+  --font-size-h1: clamp(2rem, 4vw, 3.25rem);
+  --font-size-h2: clamp(1.5rem, 2.5vw, 1.75rem);
+  --font-size-eyebrow: 0.75rem;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans), sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Utilitaires de marque
+   ========================================================================== */
+
+/* Label "eyebrow" — précède chaque titre de section (pattern hérité de la V1) */
+.eyebrow {
+  font-size: var(--font-size-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Texture de grain — reprise de la V1 */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Nombres tabulaires pour les numéros de séquence (01, 02...) */
+.num-mono {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* ==========================================================================
+   Orbes ambiantes — animations décoratives (AmbientGlow)
+   Durées 16-20s, mouvement large et lent, reprises/affinées depuis la V1.
+   ========================================================================== */
+
+@keyframes glow-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, 60px) scale(1.1);
+  }
+}
+
+@keyframes glow-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-50px, 30px) scale(1.15);
+  }
+}
+
+@keyframes glow-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, -40px) scale(1.05);
+  }
+}
+
+.animate-glow-1 {
+  animation: glow-1 18s ease-in-out infinite;
+}
+.animate-glow-2 {
+  animation: glow-2 20s ease-in-out infinite;
+}
+.animate-glow-3 {
+  animation: glow-3 16s ease-in-out infinite;
+}
