@@ -107,7 +107,20 @@ dialog{background:var(--bg);color:var(--fg);border:1px solid var(--line);padding
 #mediaDialog.vertical-media #mediaOriginal{min-height:42px}
 @media(max-width:480px){#mediaFrame.vertical-media{width:min(100%,300px,calc((100dvh - 235px)*9/16));min-width:min(200px,100%)}}
 </style>
-</head>
+<style id="marvin-media-v66">
+.tiktok-inline{position:relative;display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:9/16;min-height:320px;background:#111;color:#fff;overflow:hidden;border-bottom:1px solid var(--line)}
+.tiktok-inline iframe{display:block;position:absolute;inset:0;width:100%;height:100%;border:0;background:#111}
+.tiktok-inline-placeholder{display:grid;justify-items:center;gap:12px;padding:22px;text-align:center;font:500 13px/1.5 var(--body);color:#ddd}
+.tiktok-inline-placeholder strong{color:#ffcc00;font:600 25px/1 var(--head);letter-spacing:-.03em}
+.tiktok-inline-placeholder svg{width:30px;height:30px;color:#ffcc00}
+.tiktok-inline-status{font:500 12px/1.45 var(--body);color:var(--muted);margin:0}
+.tiktok-inline-status[hidden],.tiktok-retry[hidden]{display:none!important}
+.tiktok-retry{border:1px solid var(--line);background:transparent;color:var(--fg);font:600 12px var(--body);padding:9px 12px;cursor:pointer;align-self:flex-start}
+.tiktok-retry:focus-visible{outline:2px solid #ffcc00;outline-offset:3px}
+.media-card[data-platform=tiktok] .media-info h3{font-size:clamp(21px,1.7vw,30px)}
+@media(min-width:761px) and (max-width:1150px){.media-card[data-platform=tiktok]{grid-column:span 6}}
+@media(max-width:760px){.tiktok-inline{width:min(100%,370px);margin:0 auto;min-height:0}.media-card[data-platform=tiktok] .media-info{width:100%}}
+</style></head>
 <body class="nojs"><script>document.body.classList.remove('nojs')</script>
 <div class="progress" id="progress"></div>
 <div aria-label="Introduction Marvin Studio" aria-modal="true" class="intro" id="intro" role="dialog">
@@ -145,7 +158,7 @@ dialog{background:var(--bg);color:var(--fg);border:1px solid var(--line);padding
 </section>
 <section class="section shell media-section" id="sessions" aria-labelledby="sessionsTitle">
 <div class="eyebrow reveal"><span class="dot"></span> MARVIN SESSIONS / AU-DELÀ DU PORTFOLIO</div>
-<div class="section-head"><h2 class="reveal" id="sessionsTitle">À voir.<br/>À <span class="yellow">ressentir.</span></h2><p class="reveal">Le design, la musique et les instants de création, au-delà des écrans de ce site. Retrouvez une sélection de mes œuvres et collaborations sur les plateformes où je les partage.</p></div>
+<div class="section-head"><h2 class="reveal" id="sessionsTitle">À voir.<br/>À <span class="yellow">ressentir.</span></h2><p class="reveal">Le design, la musique et les instants de création, au-delà des écrans de ce site. Retrouvez une sélection de mes œuvres et collaborations. Les lecteurs TikTok se chargent lorsque vous approchez de la galerie, sans lecture automatique.</p></div>
 <div class="media-toolbar reveal"><div class="filters" id="mediaFilters" aria-label="Filtrer les œuvres par plateforme"><button class="pill" data-media="all" aria-pressed="true" type="button">Tout</button><button class="pill" data-media="youtube" aria-pressed="false" type="button">YouTube</button><button class="pill" data-media="facebook" aria-pressed="false" type="button">Facebook</button><button class="pill" data-media="tiktok" aria-pressed="false" type="button">TikTok</button></div><span class="label-mono" id="mediaCount" aria-live="polite">06 / ŒUVRES</span></div>
 <div class="media-grid reveal" id="mediaGrid"></div>
 <p class="media-note micro" id="mediaNote">Les publications Facebook seront ajoutées prochainement.</p>
@@ -227,6 +240,57 @@ const audio=$('#audio'),mini=$('#miniPlayer');let musicVisible=true,started=fals
 const mediaWorks = [{"platform":"youtube","title":"Vidéo YouTube 01","url":"https://www.youtube.com/watch?v=ssU1N_-ULJA","id":"ssU1N_-ULJA","number":"01","kind":"video"},{"platform":"youtube","title":"Vidéo YouTube 02","url":"https://www.youtube.com/watch?v=Nf9aCf5vDBg","id":"Nf9aCf5vDBg","number":"02","kind":"video"},{"platform":"tiktok","title":"Vidéo TikTok 01","url":"https://www.tiktok.com/@marvinstudio_officiel/video/7698493851870252296","id":"7698493851870252296","number":"01","kind":"video","creator":"@marvinstudio_officiel"},{"platform":"tiktok","title":"Vidéo TikTok 02","url":"https://www.tiktok.com/@marvinstudio_officiel/video/7563039249663003916","id":"7563039249663003916","number":"02","kind":"video","creator":"@marvinstudio_officiel"},{"platform":"tiktok","title":"Publication photo TikTok","url":"https://www.tiktok.com/@marvinstudio_officiel/photo/7564102378698362124","id":"7564102378698362124","number":"03","kind":"photo","creator":"@marvinstudio_officiel"},{"platform":"tiktok","title":"Vidéo TikTok 04","url":"https://www.tiktok.com/@raissaaaa_84/video/7565626022561893644","id":"7565626022561893644","number":"04","kind":"video","creator":"@raissaaaa_84"}];
 const platforms={youtube:{name:'YouTube',icon:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="5"/><path fill="#090909" d="M10 8l6 4-6 4z"/></svg>'},tiktok:{name:'TikTok',icon:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 2h-4v13a3 3 0 1 1-3-3V8a7 7 0 1 0 7 7V7a8 8 0 0 0 6 2V5a6 6 0 0 1-6-3z"/></svg>'}};
 const grid=document.getElementById('mediaGrid'),filters=[...document.querySelectorAll('#mediaFilters button')],count=document.getElementById('mediaCount'),note=document.getElementById('mediaNote'),dialog=document.getElementById('mediaDialog'),frame=document.getElementById('mediaFrame');let trigger=null;
+const inlinePlayers=new Map();
+function pauseTikTok(except=null){
+  for(const entry of inlinePlayers.values())if(entry.iframe&&entry.iframe.contentWindow!==except){
+    entry.iframe.contentWindow.postMessage({'x-tiktok-player':true,type:'pause'},'https://www.tiktok.com');
+  }
+}
+function showInlineStatus(entry,message,retry=false){
+  entry.status.textContent=message;entry.status.hidden=!message;entry.retry.hidden=!retry;
+}
+function loadInline(entry){
+  clearTimeout(entry.timer);
+  entry.iframe?.remove();
+  showInlineStatus(entry,'Chargement du lecteur TikTok…');
+  const iframe=document.createElement('iframe');
+  iframe.title=entry.w.title+' — lecteur TikTok intégré';
+  iframe.allow='autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write; web-share';
+  iframe.allowFullscreen=true;iframe.referrerPolicy='strict-origin-when-cross-origin';
+  iframe.src='https://www.tiktok.com/player/v1/'+encodeURIComponent(entry.w.id)+'?controls=1&description=0&music_info=0&autoplay=0&rel=0';
+  entry.iframe=iframe;
+  entry.box.replaceChildren(iframe);
+  iframe.addEventListener('error',()=>{clearTimeout(entry.timer);showInlineStatus(entry,'Le lecteur TikTok n’a pas pu se charger. Réessayez ou ouvrez la publication originale.',true)});
+  entry.timer=setTimeout(()=>showInlineStatus(entry,'Si le lecteur ne s’affiche pas, réessayez ou ouvrez la publication originale.',true),18000);
+}
+const inlineObserver='IntersectionObserver' in window?new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){const item=inlinePlayers.get(e.target);if(item&&!item.iframe)loadInline(item);inlineObserver.unobserve(e.target)}
+}),{rootMargin:'180px 0px'}):null;
+window.addEventListener('message',event=>{
+  if(event.origin!=='https://www.tiktok.com')return;
+  const message=event.data;if(!message||message['x-tiktok-player']!==true)return;
+  const entry=[...inlinePlayers.values()].find(item=>item.iframe?.contentWindow===event.source);
+  if(!entry)return;
+  if(message.type==='onPlayerReady'){clearTimeout(entry.timer);showInlineStatus(entry,'')}
+  if(message.type==='onStateChange'&&message.value===1){document.getElementById('audio')?.pause();pauseTikTok(event.source)}
+  if(message.type==='onPlayerError'||message.type==='onError'){
+    clearTimeout(entry.timer);
+    showInlineStatus(entry,'TikTok signale un problème de lecture. La publication originale reste accessible.',true);
+  }
+});
+document.getElementById('audio')?.addEventListener('play',()=>pauseTikTok());
+function makeInline(w){
+  const box=document.createElement('div');box.className='tiktok-inline';
+  const placeholder=document.createElement('div');placeholder.className='tiktok-inline-placeholder';
+  placeholder.innerHTML=platforms.tiktok.icon+'<strong>TikTok</strong><span>Le lecteur se charge à l’approche de cette publication.</span>';
+  box.append(placeholder);
+  const status=document.createElement('p');status.className='tiktok-inline-status';status.setAttribute('role','status');status.hidden=true;
+  const retry=document.createElement('button');retry.type='button';retry.className='tiktok-retry';retry.textContent='Recharger le lecteur';retry.hidden=true;
+  const entry={w,box,status,retry,iframe:null,timer:null};inlinePlayers.set(box,entry);
+  retry.onclick=()=>loadInline(entry);
+  if(inlineObserver)inlineObserver.observe(box);else loadInline(entry);
+  return entry;
+}
 function openVideo(w,button){
   trigger=button;
   const p=platforms[w.platform], isTikTok=w.platform==='tiktok', photo=w.kind==='photo';
@@ -236,6 +300,7 @@ function openVideo(w,button){
   original.href=w.url;
   original.textContent='Ouvrir sur '+p.name+' ↗';
   document.getElementById('audio')?.pause();
+  pauseTikTok();
   dialog.classList.toggle('vertical-media',isTikTok);
   frame.classList.toggle('vertical-media',isTikTok);
   const iframe=document.createElement('iframe');
@@ -260,9 +325,10 @@ const badge=document.createElement('span');badge.className='media-platform';badg
 const action=document.createElement('span');action.className='media-cover-action';action.setAttribute('aria-hidden','true');action.textContent=w.kind==='photo'?'▧':'▶';cover.append(action);
 const serial=document.createElement('span');serial.className='media-serial';serial.textContent='SESSION / '+String(i+1).padStart(2,'0');cover.append(serial);
 const info=document.createElement('div');info.className='media-info';const title=document.createElement('h3');title.textContent=w.title;const desc=document.createElement('p');desc.textContent=youtube?'À découvrir dans le lecteur ou sur YouTube.':(w.kind==='photo'?'Publication photo · ':'Vidéo · ')+w.creator;info.append(title,desc);
-const actions=document.createElement('div');actions.className='media-card-actions';{const play=document.createElement('button');play.className='media-play-button';play.type='button';play.textContent=w.kind==='photo'?'Consulter ▧':'Regarder ▶';play.onclick=()=>openVideo(w,play);actions.append(play)}const link=document.createElement('a');link.className='textlink';link.href=w.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Voir sur '+p.name+' ↗';actions.append(link);info.append(actions);card.append(cover,info);return card}
+const inline=youtube?null:makeInline(w);if(inline)info.append(inline.status,inline.retry);
+const actions=document.createElement('div');actions.className='media-card-actions';{const play=document.createElement('button');play.className='media-play-button';play.type='button';play.textContent=youtube?'Regarder ▶':(w.kind==='photo'?'Agrandir ▧':'Agrandir ↗');play.onclick=()=>openVideo(w,play);actions.append(play)}const link=document.createElement('a');link.className='textlink';link.href=w.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Voir sur '+p.name+' ↗';actions.append(link);info.append(actions);card.append(inline?inline.box:cover,info);return card}
 mediaWorks.forEach((w,i)=>grid.append(makeCard(w,i)));
-function select(key){grid.dataset.filter=key;filters.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.media===key)));let n=0;[...grid.children].forEach(c=>{c.hidden=key!=='all'&&c.dataset.platform!==key;if(!c.hidden)n++});count.textContent=String(n).padStart(2,'0')+' / ŒUVRE'+(n===1?'':'S');note.hidden=!!n;if(!n)note.textContent='Les publications Facebook seront ajoutées prochainement.';}
+function select(key){pauseTikTok();grid.dataset.filter=key;filters.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.media===key)));let n=0;[...grid.children].forEach(c=>{c.hidden=key!=='all'&&c.dataset.platform!==key;if(!c.hidden)n++});count.textContent=String(n).padStart(2,'0')+' / ŒUVRE'+(n===1?'':'S');note.hidden=!!n;if(!n)note.textContent='Les publications Facebook seront ajoutées prochainement.';}
 filters.forEach(b=>b.addEventListener('click',()=>select(b.dataset.media)));select('all');
 })();
 </script></body></html>
